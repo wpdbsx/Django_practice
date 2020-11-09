@@ -31,14 +31,21 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third apps
+    'django_extensions',
+    'debug_toolbar',
+    # locals apps
+    'accounts',
     'blog1',
     'instagram',
+  
 ]
 
 MIDDLEWARE = [
@@ -49,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
 ]
 
 ROOT_URLCONF = 'askcompany.urls'
@@ -127,3 +136,6 @@ MEDIA_URL = "/media/"  #파일을 접근할 때
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')  # 파일을 저장할떄
 
 
+INTERNAL_IPS = [ '127.0.0.1']
+
+AUTH_USER_MODEL = 'auth.User'
