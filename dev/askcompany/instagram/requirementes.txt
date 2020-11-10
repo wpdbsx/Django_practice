@@ -3,3 +3,4 @@ pillow
 django-extensions
 django-filter
 django-debug-toolbar
+django-bootstrap4
