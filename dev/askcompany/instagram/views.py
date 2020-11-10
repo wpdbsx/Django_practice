@@ -1,18 +1,30 @@
+from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,DetailView
 from django.shortcuts import render , get_object_or_404
 from .models import Post
 from django.http import HttpResponse, HttpRequest,Http404
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
 # post_list = ListView.as_view(model = Post)  # 클래스형
 
 
-class ItemListView(ListView):
+# class ItemListView(ListView):
+#     model = Post
+#     paginate_by=10
+
+
+# post_list = ItemListView.as_view()
+# post_list = login_required(post_list)
+########################################
+@method_decorator(login_required,name = 'dispatch')
+class PostListView(ListView):
     model = Post
-
-
-post_list = ItemListView.as_view()
+    paginate_by =10
+post_list=  PostListView.as_view()
+########################################
+# @login_required
 # def post_list(request) :   # 함수형
 #     qs = Post.objects.all()
 #     q = request.GET.get('q','')
