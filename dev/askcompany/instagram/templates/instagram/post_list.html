@@ -34,6 +34,11 @@
                                 No Photo
                                 {% endif%}
                             </td>
+                            <td>
+                            <a href= "{{post.get_absolute_url}}">
+                           
+                            {{post.message}}
+                            </td>
                         </tr>
                     {%endfor %}
                 </tbody>

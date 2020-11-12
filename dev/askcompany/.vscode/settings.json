@@ -1,3 +1,7 @@
-{
-    "python.pythonPath": "E:\\Anaconda3\\envs\\askme\\python.exe"
+{   
+    "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "yapf",
+    "python.pythonPath": "D:\\anaconda3\\envs\\askcompany\\python.exe",
+
+
 }

@@ -1,6 +1,7 @@
 from django.db import models
 import os
 from django.conf import settings
+from django.urls import reverse
 # from uuid import uuid4
 # from django.utils import timezone
 # Create your models here.
@@ -20,6 +21,10 @@ class Post(models.Model) :
     def __str__(self):
         # return f"Custom Post object({self.id})"
         return self.message
+    
+    def get_absolute_url(self):
+        return reverse("instagram:post_detail", args=[ self.pk])
+    
     class Meta :
         ordering = ['-id']
     # def message_length(self):
