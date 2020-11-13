@@ -1,12 +1,25 @@
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,DetailView,ArchiveIndexView,YearArchiveView
-from django.shortcuts import render , get_object_or_404
+from django.shortcuts import render , get_object_or_404,redirect
 from .models import Post
 from django.http import HttpResponse, HttpRequest,Http404
 from django.utils.decorators import method_decorator
-
+from .forms import PostForm
 # Create your views here.
 
+def post_new(request):
+    if request.method =='POST' :
+        form = PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            post = form.save()
+            return redirect(post)
+    else :
+        form = PostForm()
+   
+    return render(request,'instagram/post_form.html',{
+        'form':form,
+    })
+    
 # post_list = ListView.as_view(model = Post)  # 클래스형
 
 

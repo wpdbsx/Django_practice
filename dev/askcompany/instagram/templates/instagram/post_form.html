@@ -1,0 +1,8 @@
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {% comment %} 추후에 설명함 {% endcomment %}
+    <table>
+        {{form.as_table}}
+        </table>
+        <input type= "submit" value="저장"/>
+    </form>

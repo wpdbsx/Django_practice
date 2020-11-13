@@ -5,15 +5,16 @@
 {% endblock title %}
 
 {% block content %}
-    <script>
+    {% comment %} <script>
     if (1 > 0) {
         alert("hello");
     } 
-    </script>
+    </script> {% endcomment %}
     <form action="" method="get">
         <input type="text" name="q" value="{{q}}"/>
         <input type='submit' value="검색"/>
     </form>
+    <a href="{% url 'instagram:post_new' %}" class="btn btn-primary btn-block mt-1 mb-1">새 포스팅</a>
     <table class="table table-bordered table-hover">
         <tbody>
             {% for post in post_list %}

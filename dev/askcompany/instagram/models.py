@@ -1,14 +1,20 @@
+
 from django.db import models
 import os
+from django.core.validators import MinLengthValidator
 from django.conf import settings
 from django.urls import reverse
+
+# min_length_validator = MinLengthValidator(3)  # 3글자 이하로 받으면 에러를 표현한다. 
 # from uuid import uuid4
 # from django.utils import timezone
 # Create your models here.
 
 class Post(models.Model) :
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
-    message = models.TextField()
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
+    message = models.TextField(
+        validators=[MinLengthValidator(10)]
+    )
     photo = models.ImageField(blank=True,upload_to='instagram/post/%Y/%m/%d')
     tag_set = models.ManyToManyField('Tag',blank=True) 
     # blank 를 참으로 하는 이유는 태그는 없는 상황이 있을수도 있기 떄문에 
