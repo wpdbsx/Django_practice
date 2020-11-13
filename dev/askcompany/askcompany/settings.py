@@ -26,7 +26,7 @@ SECRET_KEY = 't%9m9ze@7-6o5a4c2q+#(dpnm+24ra058$3im5y5smx!y=00q+'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'c05ba218c5ac.ngrok.io'
+   
 ]
 
 
@@ -136,9 +136,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-# STATIC_ROOT ='' #TODO
-
+STATIC_URL = '/static/'  # 각 static 파일에 대한 URL Prefix , 템플릿 태그 {% static "경로" %} 에 의해서참조되는 설정 항상 /로 끝나도록 설정
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles') #TODO
+# File System Loader에 의해 참조되는 설정
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'askcompany','static'),
+]    # python manage.py collectstatic 명령이 참조되는 설정 여러 디렉토리로 나눠진 static 파일들을 이 경로의 디렉토리로 복사하여, 서빙 
+        # 배포에서만 의미가 있는 설정
 
 MEDIA_URL = "/media/"  #파일을 접근할 때 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')  # 파일을 저장할떄
