@@ -151,3 +151,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')  # 파일을 저장할떄
 INTERNAL_IPS = [ '127.0.0.1']
 
 AUTH_USER_MODEL = 'auth.User'
+
+from django.contrib.messages import constants as messages_contants
+
+MESSAGE_TAGS = {
+    messages_contants.DEBUG : 'secondary',
+    messages_contants.ERROR : 'danger',
+}

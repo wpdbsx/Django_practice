@@ -1,24 +1,31 @@
-{% load static %}
+{% load bootstrap4 static %}
 <!doctype html>
 <html lang='ko'>
     <head>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
         <title>
             {% block title %}{% endblock title %}
         </title>
-        <link rel="stylesheet" href="{% static 'bootstrap-4.5.3-dist/css/bootstrap.css' %}"/>
+        <link
+            rel="stylesheet"
+            href="{% static 'bootstrap-4.5.3-dist/css/bootstrap.css' %}"/>
         <script src="{% static 'jquery-3.5.1.min.js' %}"></script>
+        <script>
+            src = "{% static 'jquery.csrf.js' %} "
+        </script>
         <script src="{% static 'bootstrap-4.5.3-dist/js/bootstrap.js'%}"></script>
         <style>
             body {
                 padding-top: 5rem;
-                padding-bottom:2rem;
+                padding-bottom: 2rem;
             }
         </style>
     </head>
     <body>
-       
+
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="#">Fixed navbar</a>
             <button
@@ -54,17 +61,29 @@
                 </form>
             </div>
         </nav>
+
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                 {% block content %}{% endblock content %}
 
-                 <hr/>
-                 &copy: Ask Company, 제윤태
+                    {% comment %} {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class='alert alert-{{message.tags}}'>
+                                    {{message.message}}
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% endif%} {% endcomment %}
+                    {% bootstrap_messages %}
+                        {% block content %}{% endblock content %}
+
+                        <hr/>
+                        &copy: Ask Company, 제윤태
+                    </div>
                 </div>
             </div>
-        </div>
-           
 
         </body>
 

@@ -1,8 +1,32 @@
+{% extends 'instagram/layout.html' %}
+{% load bootstrap4 %}
+{% block content %}
 <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %} 
-    {% comment %} 추후에 설명함 {% endcomment %}
-    <table>
+    {% csrf_token %}  
+    {% comment %} csrf_token을 호출하면 
+      csrfmiddlewaretoken 으로 서버로 전달된다. POST 요청에 한해 써야한다.
+      유저  Token 현재 요청이 유효한지에 대한 토큰이다
+      @csrf_exmpt를 적용하면 안써도된다.
+      앱 API에서는 끈다.     
+      Jquery.post로 요청을 하면 django csrf jquery 를 쳐서 찾아서 적용한다
+      SPA
+     {% endcomment %}
+     {% bootstrap_form form %}
+     {% buttons %}
+        <button class ="btn btn-primary">
+            저장
+        </button>
+     {% endbuttons %}
+    {% comment %} <table>
         {{form.as_table}}
         </table>
-        <input type= "submit" value="저장"/>
+        <input type= "submit" value="저장"/>{% endcomment %}
     </form>
+    <hr/> 
+     {% if post %}
+    <a href="{{post.get_absolute_url}}" class="btn btn-secondary">
+       내용으로 
+    </a>
+    {% endif %} 
+    <a href="{% url "instagram:post_list" %}"> 목록</a>
+{% endblock %}``
